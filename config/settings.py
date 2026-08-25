@@ -34,20 +34,23 @@ DEBUG = os.environ.get(
 ).lower() == "true"
 
 
+# 1. Explicitly allow your custom domain variations
 ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.environ.get(
-        "ALLOWED_HOSTS",
-        "localhost,127.0.0.1,web-production-f2684.up.railway.app,mjm.up.railway.app"
-    ).split(",")
-    if host.strip()
+    "localhost",
+    "127.0.0.1",
+    "web-production-f2684.up.railway.app",
+    "mjm.up.railway.app",
 ]
 
-
+# 2. Tell Django to trust the secure origins for incoming form posts
 CSRF_TRUSTED_ORIGINS = [
     "https://railway.app",
     "https://railway.app",
 ]
+
+# 3. CRITICAL: Tell Django your app runs behind Railway's reverse proxy header
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 # Add this right below your STATICFILES_STORAGE setting
 WHITENOISE_MANIFEST_STRICT = False
