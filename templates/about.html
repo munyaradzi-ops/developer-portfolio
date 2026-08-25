@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block title %}
+About | Munyaradzi
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+
+    <div class="container">
+
+        <p class="subtitle">
+            GET TO KNOW ME
+        </p>
+
+        <h1>
+            About Me
+        </h1>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container about-page">
+
+        <div class="about-image">
+
+            {% if profile.profile_image %}
+
+                <img src="{{ profile.profile_image.url }}"
+                     alt="{{ profile.name }}">
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="about-content">
+
+            <h2>
+                {{ profile.name }}
+            </h2>
+
+            <h3>
+                {{ profile.title }}
+            </h3>
+
+            <p>
+                {{ profile.bio }}
+            </p>
+
+            {% if profile.location %}
+                <p>
+                    <strong>Location:</strong>
+                    {{ profile.location }}
+                </p>
+            {% endif %}
+
+            {% if profile.email %}
+                <p>
+                    <strong>Email:</strong>
+                    {{ profile.email }}
+                </p>
+            {% endif %}
+
+            <div class="social-links">
+
+                {% if profile.github_url %}
+                    <a href="{{ profile.github_url }}"
+                       target="_blank">
+                        GitHub
+                    </a>
+                {% endif %}
+
+                {% if profile.linkedin_url %}
+                    <a href="{{ profile.linkedin_url }}"
+                       target="_blank">
+                        LinkedIn
+                    </a>
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

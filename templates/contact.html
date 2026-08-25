@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Contact | Munyaradzi
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+
+    <div class="container">
+
+        <p class="subtitle">
+            GET IN TOUCH
+        </p>
+
+        <h1>
+            Contact Me
+        </h1>
+
+        <p>
+            Have a project or opportunity? Let's talk.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container contact-container">
+
+        <div class="contact-info">
+
+            <h2>
+                Let's work together
+            </h2>
+
+            <p>
+                I'm interested in developing useful and
+                practical software solutions.
+            </p>
+
+            {% if profile.email %}
+
+                <p>
+                    <strong>Email</strong><br>
+                    {{ profile.email }}
+                </p>
+
+            {% endif %}
+
+            {% if profile.location %}
+
+                <p>
+                    <strong>Location</strong><br>
+                    {{ profile.location }}
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <form method="POST"
+              class="contact-form">
+
+            {% csrf_token %}
+
+            <input type="text"
+                   name="name"
+                   placeholder="Your Name"
+                   required>
+
+            <input type="email"
+                   name="email"
+                   placeholder="Your Email"
+                   required>
+
+            <input type="text"
+                   name="subject"
+                   placeholder="Subject"
+                   required>
+
+            <textarea name="message"
+                      rows="7"
+                      placeholder="Your Message"
+                      required></textarea>
+
+            <button type="submit"
+                    class="btn primary-btn">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}

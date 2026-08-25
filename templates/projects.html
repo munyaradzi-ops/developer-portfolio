@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Projects | Munyaradzi
+{% endblock %}
+
+
+{% block content %}
+
+<section class="page-header">
+
+    <div class="container">
+
+        <p class="subtitle">
+            MY WORK
+        </p>
+
+        <h1>
+            Projects
+        </h1>
+
+        <p>
+            A selection of systems and applications I have developed.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="section">
+
+    <div class="container">
+
+        <div class="projects-grid">
+
+            {% for project in projects %}
+
+                <article class="project-card">
+
+                    {% if project.image %}
+
+                        <img src="{{ project.image.url }}"
+                             alt="{{ project.title }}">
+
+                    {% endif %}
+
+                    <div class="project-content">
+
+                        <p class="project-category">
+                            {{ project.get_category_display }}
+                        </p>
+
+                        <h3>
+                            {{ project.title }}
+                        </h3>
+
+                        <p>
+                            {{ project.short_description }}
+                        </p>
+
+                        <a href="{% url 'project_detail' project.slug %}"
+   class="project-link">
+
+    View Project →
+
+</a>
+
+                    </div>
+
+                </article>
+
+            {% empty %}
+
+                <p>
+                    No projects have been added yet.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
