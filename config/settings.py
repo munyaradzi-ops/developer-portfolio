@@ -48,6 +48,11 @@ ALLOWED_HOSTS = [
     ).split(",")
     if host.strip()
 ]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-production-f2684.up.railway.app",
+]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 
