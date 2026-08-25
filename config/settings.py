@@ -45,8 +45,12 @@ ALLOWED_HOSTS = [
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://railway.app",
-    "https://railway.app",
+    origin.strip()
+    for origin in os.environ.get(
+        "CSRF_TRUSTED_ORIGINS",
+        "https://railway.app,https://railway.app"
+    ).split(",")
+    if origin.strip()
 ]
 # Add this right below your STATICFILES_STORAGE setting
 WHITENOISE_MANIFEST_STRICT = False
