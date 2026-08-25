@@ -45,7 +45,8 @@ ALLOWED_HOSTS = [
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-f2684.up.railway.app",
+    "https://railway.app",
+    "https://railway.app",
 ]
 # Add this right below your STATICFILES_STORAGE setting
 WHITENOISE_MANIFEST_STRICT = False
