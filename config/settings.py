@@ -95,7 +95,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
-# Unified unified storage routing block for Django 5.x
+# Unified storage routing block for Django 5.x
 STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
@@ -104,6 +104,10 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
+
+# Fallback parameter required by the out-of-date 'cloudinary_storage' module
+# This specifically satisfies its legacy collectstatic verification hooks
+STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
 # Database routing configuration
 DATABASE_URL = os.environ.get("DATABASE_URL")
