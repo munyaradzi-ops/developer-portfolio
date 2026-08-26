@@ -41,13 +41,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Prevent strict crashes during asset manifestation lookups
 WHITENOISE_MANIFEST_STRICT = False
 
-<<<<<<< HEAD
-
-
-
-
-=======
->>>>>>> d903e3b501455a8063fa0ad013aec5232076b2ab
 # Application definition
 INSTALLED_APPS = [
     'cloudinary_storage',  # Cloudinary must initialize before staticfiles engine handles lookups
