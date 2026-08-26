@@ -89,15 +89,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Cloudinary credentials configuration
-# config/settings.py
-
-# Double-lookup ensures that whichever way you named it on Railway, Django captures it!
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME') or os.environ.get('CLOUD_NAME'),
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY') or os.environ.get('API_KEY'),
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET') or os.environ.get('API_SECRET'),
 }
-
 
 # Unified storage routing block for Django 5.x
 STORAGES = {
@@ -109,9 +105,9 @@ STORAGES = {
     },
 }
 
-# Fallback parameter required by the out-of-date 'cloudinary_storage' module
-# This specifically satisfies its legacy collectstatic verification hooks
+# Explicit legacy overrides to drop Cloudinary's invasive asset pipeline scanning hooks
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 
 # Database routing configuration
 DATABASE_URL = os.environ.get("DATABASE_URL")
@@ -148,16 +144,18 @@ USE_TZ = True
 
 # Assets distribution configuration
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"
+STATIC_ROOT = BASE_DIR / "production_staticfiles"
+
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Runtime logging diagnostics
 LOGGING = {
     "version": 1,
     "disable_existing_loggers": False,
@@ -178,4 +176,3 @@ LOGGING = {
         },
     },
 }
-
