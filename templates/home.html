@@ -46,11 +46,16 @@ Home | Munyaradzi
         </div>
 
 
-      <div class="hero-image">
-    {% load static %}
-    <!-- Explicitly pull the stable image asset from your static directory -->
-    <img src="{% static 'images/profile.jpg' %}" alt="Munyaradzi Profile Pic">
-</div>
+  <div class="hero-image">
+
+           {% if profile.profile_image %}
+    <!-- Make sure you use .url to output the complete path string -->
+    <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="profile-pic">
+{% else %}
+    <!-- Fallback if no file is chosen or if the container restarted -->
+    <img src="https://ui-avatars.com" alt="Default Avatar" class="profile-pic">
+{% endif %}
+
 
 
                 <div class="profile-placeholder">
