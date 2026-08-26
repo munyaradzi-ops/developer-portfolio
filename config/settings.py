@@ -103,12 +103,16 @@ TEMPLATES = [
     },
 ]
 
+# config/settings.py
+
+# 1. Pull Cloudinary credentials dynamically from environment variables
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'your_cloud_name',
-    'API_KEY': 'your_api_key',
-    'API_SECRET': 'your_api_secret',
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
 }
 
+# 2. Fix the duplicate key error and use standard WhiteNoise storage to prevent admin crashes
 STORAGES = {
     "default": {
        "BACKEND": "django.core.files.storage.FileSystemStorage",
@@ -117,6 +121,7 @@ STORAGES = {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
+
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
