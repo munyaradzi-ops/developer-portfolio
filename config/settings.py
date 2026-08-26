@@ -58,6 +58,7 @@ WHITENOISE_MANIFEST_STRICT = False
 
 
 
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -116,13 +117,13 @@ CLOUDINARY_STORAGE = {
 # Locate your current STORAGES block and replace it entirely with this:
 STORAGES = {
     "default": {
-        # Switch from FileSystemStorage to Cloudinary
-        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
+
 
 
 
