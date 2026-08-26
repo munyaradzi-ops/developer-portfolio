@@ -89,11 +89,15 @@ TEMPLATES = [
 WSGI_APPLICATION = 'config.wsgi.application'
 
 # Cloudinary credentials configuration
+# config/settings.py
+
+# Double-lookup ensures that whichever way you named it on Railway, Django captures it!
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET'),
+    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME') or os.environ.get('CLOUD_NAME'),
+    'API_KEY': os.environ.get('CLOUDINARY_API_KEY') or os.environ.get('API_KEY'),
+    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET') or os.environ.get('API_SECRET'),
 }
+
 
 # Unified storage routing block for Django 5.x
 STORAGES = {
