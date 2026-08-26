@@ -96,17 +96,19 @@ CLOUDINARY_STORAGE = {
 }
 
 # Unified storage routing block for Django 5.x — RE-ADDED MISSING CORE KEYS SECURELY
+# Unified storage routing block for Django 5.x
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
+        # Switch backend to prevent pre-assembly compression loops during container compilation
+        "BACKEND": "whitenoise.storage.StaticFilesStorage",
     },
 }
 
-# Explicit legacy overrides to drop Cloudinary's invasive asset pipeline scanning hooks
-STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
+# Explicit legacy fallback override matching the backend choice above
+STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
 DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 
 # Database routing configuration
