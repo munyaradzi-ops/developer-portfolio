@@ -30,9 +30,11 @@ ALLOWED_HOSTS = [
 ]
 
 # Trust the secure origins for incoming forms
+# Trust the secure origins for incoming forms
 CSRF_TRUSTED_ORIGINS = [
     "https://railway.app",
-    "https://railway.app",
+    "https://mjm.up.railway.app",
+    "https://web-production-f2684.up.railway.app",
 ]
 
 # Tell Django your app runs behind Railway's reverse proxy header
