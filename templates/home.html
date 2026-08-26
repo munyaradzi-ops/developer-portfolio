@@ -4,239 +4,150 @@
 Home | Munyaradzi
 {% endblock %}
 
-
 {% block content %}
 
 <section class="hero">
-
     <div class="container hero-content">
-
         <div class="hero-text">
-
             <p class="subtitle">
                 HELLO, I'M
             </p>
-
             <h1>
                 {{ profile.name }}
             </h1>
-
             <h2>
                 {{ profile.title }}
             </h2>
-
             <p class="hero-description">
                 {{ profile.bio|truncatewords:35 }}
             </p>
-
             <div class="hero-buttons">
-
                 <a href="{% url 'projects' %}"
                    class="btn primary-btn">
                     View My Projects
                 </a>
-
                 <a href="{% url 'contact' %}"
                    class="btn secondary-btn">
                     Contact Me
                 </a>
-
             </div>
-
         </div>
 
-
-<<<<<<< HEAD
-  <div class="hero-image">
-=======
         <div class="hero-image">
->>>>>>> a1fb3c9 (Save temporary unstaged work and styles)
-
-           {% if profile.profile_image %}
-    <!-- Make sure you use .url to output the complete path string -->
-    <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="profile-pic">
-{% else %}
-    <!-- Fallback if no file is chosen or if the container restarted -->
-    <img src="https://ui-avatars.com" alt="Default Avatar" class="profile-pic">
-{% endif %}
-
-                <div class="profile-placeholder">
-                    {{ profile.name|first }}
-                </div>
-
+            {% if profile.profile_image %}
+                <!-- Complete path string to file upload -->
+                <img src="{{ profile.profile_image.url }}" alt="{{ profile.name }}" class="profile-pic">
+            {% else %}
+                <!-- Fallback to external placeholder rendering initials if profile image is blank -->
+                <img src="https://ui-avatars.com{{ profile.name|urlencode }}&size=128&background=random" alt="Default Avatar" class="profile-pic">
             {% endif %}
-
         </div>
-
     </div>
-
 </section>
 
-
 <!-- Featured Projects -->
-
 <section class="section">
-
     <div class="container">
-
         <div class="section-heading">
-
             <p class="subtitle">
                 MY WORK
             </p>
-
             <h2>
                 Featured Projects
             </h2>
-
         </div>
 
-
         <div class="projects-grid">
-
             {% for project in featured_projects %}
-
                 <article class="project-card">
-
                     {% if project.image %}
-
                         <img src="{{ project.image.url }}"
                              alt="{{ project.title }}">
-
                     {% endif %}
-
                     <div class="project-content">
-
                         <p class="project-category">
                             {{ project.get_category_display }}
                         </p>
-
                         <h3>
                             {{ project.title }}
                         </h3>
-
                         <p>
                             {{ project.short_description }}
                         </p>
-
                         <a href="{% url 'project_detail' project.slug %}">
                             View Project →
                         </a>
-
                     </div>
-
                 </article>
-
             {% empty %}
-
                 <p>
                     No featured projects available yet.
                 </p>
-
             {% endfor %}
-
         </div>
 
-
         <div class="center-button">
-
             <a href="{% url 'projects' %}"
                class="btn primary-btn">
                 View All Projects
             </a>
-
         </div>
-
     </div>
-
 </section>
 
-
 <!-- Skills -->
-
 <section class="section skills-section">
-
     <div class="container">
-
         <div class="section-heading">
-
             <p class="subtitle">
                 WHAT I USE
             </p>
-
             <h2>
                 My Skills
             </h2>
-
         </div>
 
-
         <div class="skills-grid">
-
             {% for skill in skills %}
-
                 <div class="skill-card">
-
                     <h3>
                         {{ skill.name }}
                     </h3>
-
                     <div class="skill-bar">
-
                         <div class="skill-progress"
                              style="width: {{ skill.level }}%;">
                         </div>
-
                     </div>
-
                     <span>
                         {{ skill.level }}%
                     </span>
-
                 </div>
-
             {% endfor %}
-
         </div>
-
     </div>
-
 </section>
 
-
 <!-- About Preview -->
-
 <section class="section">
-
     <div class="container about-preview">
-
         <div>
-
             <p class="subtitle">
                 ABOUT ME
             </p>
-
             <h2>
                 Building practical solutions with code.
             </h2>
-
         </div>
-
         <div>
-
             <p>
                 {{ profile.bio }}
             </p>
-
             <a href="{% url 'about' %}"
                class="text-link">
                 More About Me →
             </a>
-
         </div>
-
     </div>
-
 </section>
 
 {% endblock %}
