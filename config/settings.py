@@ -85,7 +85,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Unified storage routing block for Django 5.x - Clean Local Configurations
+# Unified storage routing block for Django 5.x - Configured for Production Volumes
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
