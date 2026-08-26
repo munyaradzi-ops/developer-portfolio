@@ -109,11 +109,7 @@ CLOUDINARY_STORAGE = {
 # Unified storage routing block for Django 5.x
 STORAGES = {
     "default": {
-<<<<<<< HEAD
-        "BACKEND": "django.core.files.storage.FileSystemStorage",
-=======
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
->>>>>>> d903e3b501455a8063fa0ad013aec5232076b2ab
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
@@ -124,17 +120,7 @@ STORAGES = {
 # This specifically satisfies its legacy collectstatic verification hooks
 STATICFILES_STORAGE = "whitenoise.storage.CompressedStaticFilesStorage"
 
-<<<<<<< HEAD
-
-
-WSGI_APPLICATION = 'config.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-=======
 # Database routing configuration
->>>>>>> d903e3b501455a8063fa0ad013aec5232076b2ab
 DATABASE_URL = os.environ.get("DATABASE_URL")
 
 if DATABASE_URL:
