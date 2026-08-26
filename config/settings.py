@@ -113,14 +113,17 @@ CLOUDINARY_STORAGE = {
 }
 
 # 2. Fix the duplicate key error and use standard WhiteNoise storage to prevent admin crashes
+# Locate your current STORAGES block and replace it entirely with this:
 STORAGES = {
     "default": {
-       "BACKEND": "django.core.files.storage.FileSystemStorage",
+        # Switch from FileSystemStorage to Cloudinary
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
+
 
 
 WSGI_APPLICATION = 'config.wsgi.application'
