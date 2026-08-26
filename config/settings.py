@@ -130,7 +130,7 @@ USE_TZ = True
 
 # Assets distribution configuration
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "production_staticfiles"
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
     BASE_DIR / "static",
