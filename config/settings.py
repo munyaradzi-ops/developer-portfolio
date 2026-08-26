@@ -30,7 +30,6 @@ ALLOWED_HOSTS = [
 ]
 
 # Trust the secure origins for incoming forms
-# Trust the secure origins for incoming forms
 CSRF_TRUSTED_ORIGINS = [
     "https://railway.app",
     "https://mjm.up.railway.app",
@@ -43,10 +42,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Prevent strict crashes during asset manifestation lookups
 WHITENOISE_MANIFEST_STRICT = False
 
-# Application definition
+# Application definition - CLOUDINARY COMPLETELY REMOVED
 INSTALLED_APPS = [
-    'cloudinary_storage',  # Cloudinary must initialize before staticfiles engine handles lookups
-    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -81,8 +78,6 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                # Commented out temporarily to avoid 500 crashes if file does not exist yet:
-                # "core.context_processors.profile_context",
             ],
         },
     },
@@ -90,28 +85,15 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-# Cloudinary credentials configuration
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME') or os.environ.get('CLOUD_NAME'),
-    'API_KEY': os.environ.get('CLOUDINARY_API_KEY') or os.environ.get('API_KEY'),
-    'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET') or os.environ.get('API_SECRET'),
-}
-
-# Unified storage routing block for Django 5.x — RE-ADDED MISSING CORE KEYS SECURELY
-# Unified storage routing block for Django 5.x
+# Unified storage routing block for Django 5.x - Clean Local Configurations
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        # Switch backend to prevent pre-assembly compression loops during container compilation
         "BACKEND": "whitenoise.storage.StaticFilesStorage",
     },
 }
-
-# Explicit legacy fallback override matching the backend choice above
-STATICFILES_STORAGE = "whitenoise.storage.StaticFilesStorage"
-DEFAULT_FILE_STORAGE = "django.core.files.storage.FileSystemStorage"
 
 # Database routing configuration
 DATABASE_URL = os.environ.get("DATABASE_URL")
