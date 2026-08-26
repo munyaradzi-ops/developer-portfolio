@@ -31,8 +31,8 @@ ALLOWED_HOSTS = [
 
 # Trust the secure origins for incoming forms
 CSRF_TRUSTED_ORIGINS = [
-    "https://web-production-f2684.up.railway.app",
-    "https://mjm.up.railway.app",
+    "https://railway.app",
+    "https://railway.app",
 ]
 
 # Tell Django your app runs behind Railway's reverse proxy header
@@ -95,7 +95,7 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': os.environ.get('CLOUDINARY_API_SECRET') or os.environ.get('API_SECRET'),
 }
 
-# Unified storage routing block for Django 5.x
+# Unified storage routing block for Django 5.x — RE-ADDED MISSING CORE KEYS SECURELY
 STORAGES = {
     "default": {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
