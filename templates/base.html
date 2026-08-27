@@ -56,15 +56,17 @@
             </a>
 
 
-            <button class="mobile-menu-button"
-                    id="mobileMenuButton">
+            <button type="button"
+                    class="mobile-menu-button"
+                    id="mobileMenuButton"
+                    aria-label="Toggle Navigation Menu">
 
                 ☰
 
             </button>
 
 
-            <nav id="mainNavigation">
+            <nav id="mainNavigation" class="nav-menu">
 
                 <a href="{% url 'home' %}">
                     Home
@@ -167,6 +169,24 @@
 
     </footer>
 
+    <!-- Inline script fallback to guarantee menu responsiveness on mobile -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuBtn = document.getElementById('mobileMenuButton');
+            const navMenu = document.getElementById('mainNavigation');
+
+            if (menuBtn && navMenu) {
+                const toggleMenu = function (e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navMenu.classList.toggle('active');
+                };
+
+                menuBtn.addEventListener('click', toggleMenu);
+                menuBtn.addEventListener('touchstart', toggleMenu, { passive: false });
+            }
+        });
+    </script>
 
     <script src="{% static 'js/main.js' %}"></script>
 

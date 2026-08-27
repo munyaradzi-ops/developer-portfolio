@@ -144,18 +144,21 @@ nav a:hover {
 }
 
 
-.mobile-menu-button {
-    display: none;
+@media (max-width: 768px) {
+    .mobile-menu-button {
+        display: block;
+        z-index: 1000;
+        cursor: pointer;
+    }
 
-    background: none;
+    #mainNavigation {
+        display: none; /* Hide nav links by default on mobile */
+    }
 
-    border: none;
-
-    color: var(--text);
-
-    font-size: 25px;
-
-    cursor: pointer;
+    #mainNavigation.active {
+        display: flex; /* Display nav links when active */
+        flex-direction: column;
+    }
 }
 
 
